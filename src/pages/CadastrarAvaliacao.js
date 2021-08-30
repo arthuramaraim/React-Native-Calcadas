@@ -1,6 +1,7 @@
 import React, { useCallback } from 'react';
 import { View, Text, SafeAreaView } from 'react-native';
 import ChatBot from 'react-native-chatbot';
+import axios from 'axios'
 
 const CadastrarAvaliacao = ({navigation}) => {
 
@@ -606,8 +607,20 @@ const CadastrarAvaliacao = ({navigation}) => {
   ];
 
   const sendAvaliation = useCallback(
-    async (data) => {
-     // await axios.post
+    async (props) => {
+      const data = props
+      const response = await axios.get(`https://viacep.com.br/ws/${data.address.postalCode}/json/`)
+      
+      data.address = { 
+        street: response.data.logradouro,
+        district: response.data.bairro,
+        postalCode: response.data.cep,
+        city: response.data.localidade,
+        state: response.data.uf
+      }
+
+      await axios.post("http://192.168.100.11:8080/review", data)
+      
       navigation.navigate('MenuPrincipal')
     },
     []

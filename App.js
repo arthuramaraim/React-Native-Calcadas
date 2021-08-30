@@ -9,7 +9,6 @@ import CadastrarAvaliacao from './src/pages/CadastrarAvaliacao';
 import VisualizarAvaliacoes from './src/pages/VisualizarAvaliacoes';
 import MenuPrincipal from './src/pages/MenuPrincipal';
 
-
 const Stack = createStackNavigator();
 
 export default function App() {
