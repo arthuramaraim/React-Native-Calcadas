@@ -626,7 +626,7 @@ const CadastrarAvaliacao = ({navigation}) => {
       }
       steps.map((element) => {
 
-        console.log(element)
+        
         if(element.value != undefined && element.id != null){
 
           if(element.id === '3'){
